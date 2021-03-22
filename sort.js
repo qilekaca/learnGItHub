@@ -12,6 +12,8 @@ import { Compare, defaultCompare, swap } from './util'
 // }
 
 const arr = [3, 5, 1, 6, 4, 7, 2]
+// ------------------
+// NOTE: 冒泡排序
 function bubbleSort(array) {
   const { length } = array
   for (let i = 0; i < length; i++) {
@@ -25,6 +27,8 @@ function bubbleSort(array) {
 }
 // console.log(bubbleSort(arr))
 
+// -----------------
+// NOTE: 选择排序
 function selectionSort(array) {
   const { length } = array
   let indexMin
@@ -42,6 +46,7 @@ function selectionSort(array) {
   return array
 }
 
+// NOTE: 插入排序
 function insertionSort(array) {
   const { length } = array
   let temp
@@ -58,7 +63,7 @@ function insertionSort(array) {
 }
 
 // ------------------
-// 归并排序
+// NOTE: 归并排序
 function mergeSort(array, compareFn = defaultCompare) {
   if (array.length > 1) {
     const { length } = array
@@ -84,7 +89,7 @@ function merge(left, right) {
 }
 
 // ------------------------
-// 快速排序
+// NOTE: 快速排序
 function quickSort(array, compareFn = defaultCompare) {
   return quick(array, 0, array.length - 1, compareFn)
 }
@@ -123,4 +128,27 @@ function partition(array, left, right, compareFn) {
   return i
 }
 
-console.log(quickSort(arr))
+// console.log(quickSort(arr))
+// ------------------------------
+// NOTE: 计数排序
+function countingSort(array) {
+  if (array.length < 2) {
+    return array
+  }
+  const maxValue = findMaxValue(array)
+  const counts = new Array(maxValue + 1)
+  array.forEach((element) => {
+    if (!counts[element]) {
+      counts[element] = 0
+    }
+    counts[element]++
+  })
+  let sortedIndex = 0
+  counts.forEach((count, i) => {
+    while (count > 0) {
+      array[sortedIndex++] = i
+      count--
+    }
+  })
+  return array
+}
