@@ -39,6 +39,8 @@ function pathSum(root, sum) {
       var t = path.reduce((total, cur) => {
         return total + cur
       }, 0)
+      // 如果路径和为sum，并且此节点为叶子结点
+      // 将结果添加到res中
       if (t === sum && !root.left && !root.right) {
         res.push(path.slice())
       }
